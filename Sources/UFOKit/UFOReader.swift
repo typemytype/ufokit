@@ -11,10 +11,12 @@ import Foundation
 public class UFOReader {
   public let url: URL
   public let metaInfo: MetaInfo
+  public let layerContents: [(String, String)]
 
   public init(url: URL) throws {
     self.url = url
     metaInfo = try UFOReader.readMetaInfo(url: url)
+    layerContents = try UFOReader.readLayerContents(url: url)
   }
 
   class func readMetaInfo(url: URL) throws -> MetaInfo {
