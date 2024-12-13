@@ -74,8 +74,16 @@ public class UFOReader {
     return layerContents
   }
 
-  public func glyphSet() throws -> GlyphSet {
-    let glyphDirURL = url.appendingPathComponent(DirectoryName.defaultGlyphsDirName)
+  public func glyphSet(layerName: String? = nil) throws -> GlyphSet {
+    var directory = DirectoryName.defaultGlyphsDirName
+    if layerName != nil {
+      for (name, layerDirectory) in layerContents {
+        if layerName == name {
+          directory = layerDirectory
+        }
+      }
+    }
+    let glyphDirURL = url.appendingPathComponent(directory)
     return try GlyphSet(dirURL: glyphDirURL, ufoFormatVersion: metaInfo.formatVersion)
   }
 

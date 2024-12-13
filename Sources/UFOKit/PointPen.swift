@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Quartz
 import os.log
 
 public enum SegmentType: CustomStringConvertible {
