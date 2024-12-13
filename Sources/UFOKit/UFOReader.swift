@@ -49,9 +49,9 @@ public class UFOReader {
     return try decoder.decode([String: [String: Int]].self, from: kerningData)
   }
 
-  public func readLib() throws -> Data {
+  public func readLib() throws -> NSMutableDictionary {
     let libURL = url.appendingPathComponent(Filename.libFilename)
-    return try Data(contentsOf: libURL)
+    return NSMutableDictionary(contentsOf: libURL) ?? NSMutableDictionary()
   }
 
   public func readFeatures() throws -> String {
